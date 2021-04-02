@@ -10,13 +10,13 @@ let nbtry = 10
 let history = []
 
 while (true) {
-  let letter = redlineSync.question('Decypher this word : ' + finded.join(' ') + ' > ').toLowerCase()
-  if (letter.length !== 1) { console.log('Pick only one letter !'); continue }
+  let letter = redlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
+  if (letter.length !== 1) { console.log('Choisi seulement une lettre !'); continue }
+  if (history.includes(letter)) { console.log('Choisi une lettre pas encore demandé !'); continue }
   history.push(letter)
-  if (history.includes(letter)) { console.log('You already try this letter !'); continue }
 
   if (answer.includes(letter)) {
-    console.log(chalk.green('You have find a new letter !!!'))
+    console.log(chalk.green('Vous avez trouver une lettre !!!'))
     for (let i = 0; i < answer.length; i++) {
       if (answer[i] === letter) {
         finded[i] = letter
@@ -24,16 +24,16 @@ while (true) {
     }
   }
   else {
-    console.log(chalk.red('You find nothing this time, try again.'))
+    console.log(chalk.red('Vous avez rien trouver cette fois, essayez encore.'))
     nbtry--
   }
 
   if (!nbtry) {
-    console.log(chalk.magenta('The boy was been hanged, you lost the game!'))
+    console.log(chalk.magenta('Malheuresement, le garçon a été pendu, vous avez perdu.'))
     process.exit(0)
   }
   if (!finded.includes('_')) {
-    console.log(chalk.cyan('Congrats, the boy still alive, you won the game!'))
+    console.log(chalk.cyan('Bravo le garçon est toujours en vie, vous remporter la partie !'))
     process.exit(0)
   }
 }

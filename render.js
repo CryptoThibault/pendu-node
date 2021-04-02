@@ -1,3 +1,1 @@
-function render() {
-
-}
+const Visual = []
