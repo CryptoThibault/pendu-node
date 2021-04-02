@@ -1,0 +1,12 @@
+{
+  "name": "pendu-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/CryptoThibault/pendu-node.git",
+  "author": "CryptoThibault <thibault.chalaoux@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "readline-sync": "^1.4.10"
+  }
+}
