@@ -12,8 +12,8 @@ let nbtry = readFileSync('render.txt', 'utf-8').split('\n').length / lignRender
 
 console.log('\nBienvenue dans le jeu du pendu !\n\n')
 while (true) {
-  let Visual = readFileSync('render.txt', 'utf-8').split('\n').slice(7 * nbtry - lignRender, lignRender * nbtry).join('\n')
-  console.log(chalk.yellow(`Il vous reste ${nbtry} essaies\n`) + Visual)
+  let visual = readFileSync('render.txt', 'utf-8').split('\n').slice(7 * nbtry - lignRender, lignRender * nbtry).join('\n')
+  console.log(chalk.yellow(`Il vous reste ${nbtry} essaies\n`) + visual)
 
   let letter = redlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
   if (letter.length !== 1) { console.log('Choisi seulement une lettre !'); continue }
