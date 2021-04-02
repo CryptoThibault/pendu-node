@@ -7,13 +7,14 @@ let dictionary = readFileSync('dict.txt', 'utf-8').split('\n')
 let answer = dictionary[randomInt(0, dictionary.length)]
 let finded = Array(answer.length).fill('_')
 let history = []
-let nbtry = 7
+let lignRender = 7
+let nbtry = readFileSync('render.txt', 'utf-8').split('\n').length / lignRender
 
 
-console.log('Bienvenue dans le jeu du pendu !\n\n')
+console.log('\nBienvenue dans le jeu du pendu !\n\n')
 while (true) {
-  let Visual = readFileSync('render.txt', 'utf-8').split('\n').slice(7 * nbtry - 7, 7 * nbtry).join('\n')
-  console.log(Visual)
+  let Visual = readFileSync('render.txt', 'utf-8').split('\n').slice(7 * nbtry - lignRender, lignRender * nbtry).join('\n')
+  console.log(chalk.yellow(`Il vous reste ${nbtry} essaies\n`) + Visual)
   let letter = redlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
   if (letter.length !== 1) { console.log('Choisi seulement une lettre !'); continue }
   if (history.includes(letter)) { console.log('Choisi une lettre pas encore demandé !'); continue }
