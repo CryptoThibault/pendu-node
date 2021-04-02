@@ -6,10 +6,14 @@ const { readFileSync } = require('fs')
 let dictionary = readFileSync('dict.txt', 'utf-8').split('\n')
 let answer = dictionary[randomInt(0, dictionary.length)]
 let finded = Array(answer.length).fill('_')
-let nbtry = 10
 let history = []
+let nbtry = 7
 
+
+console.log('Bienvenue dans le jeu du pendu !\n\n')
 while (true) {
+  let Visual = readFileSync('render.txt', 'utf-8').split('\n').slice(7 * nbtry - 7, 7 * nbtry).join('\n')
+  console.log(Visual)
   let letter = redlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
   if (letter.length !== 1) { console.log('Choisi seulement une lettre !'); continue }
   if (history.includes(letter)) { console.log('Choisi une lettre pas encore demandé !'); continue }
@@ -37,3 +41,4 @@ while (true) {
     process.exit(0)
   }
 }
+
