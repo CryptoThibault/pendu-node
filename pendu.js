@@ -12,7 +12,7 @@ let nbtry = readFileSync('render.txt', 'utf-8').split('\n').length / lignRender
 
 console.log('\nBienvenue dans le jeu du pendu !\n\n')
 while (true) {
-  let visual = readFileSync('render.txt', 'utf-8').split('\n').slice(7 * nbtry - lignRender, lignRender * nbtry).join('\n')
+  let visual = readFileSync('render.txt', 'utf-8').split('\n').slice(lignRender * nbtry - lignRender, lignRender * nbtry).join('\n')
   console.log(chalk.yellow(`Il vous reste ${nbtry} essaies\n`) + visual)
 
   let letter = redlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
