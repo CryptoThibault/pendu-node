@@ -1,7 +1,7 @@
 const chalk = require('chalk')
 const redlineSync = require('readline-sync')
 const { randomInt } = require('crypto')
-const { readFileSync } = require('fs')
+const { readFileSync, writeFileSync } = require('fs')
 
 let dictionary = readFileSync('dict.txt', 'utf-8').split('\n')
 let answer = dictionary[randomInt(0, dictionary.length)]
@@ -11,6 +11,7 @@ let lignRender = 7
 let nbtry = readFileSync('render.txt', 'utf-8').split('\n').length / lignRender
 
 console.log('\nBienvenue dans le jeu du pendu !\n\n')
+let name = redlineSync.question('Entrer votre nom : ')
 while (true) {
   let visual = readFileSync('render.txt', 'utf-8').split('\n').slice(lignRender * nbtry - lignRender, lignRender * nbtry).join('\n')
   console.log(chalk.yellow(`Il vous reste ${nbtry} essaies\n`) + visual)
@@ -38,6 +39,13 @@ while (true) {
   }
   if (!finded.includes('_')) {
     console.log(chalk.cyan('Bravo le garçon est toujours en vie, vous remporter la partie !'))
+    let scorestab = JSON.parse(readFileSync('scores.json', 'utf-8')).scores
+    scorestab.push({ name: name, score: nbtry })
+    writeFileSync('scores.json', JSON.stringify({ scores: scorestab }))
+    console.log('Scores : \n')
+    for (let i = 0; i < scorestab.length; i++) {
+      console.log(`name: ${scorestab[i].name}   score: ${scorestab[i].score}`)
+    }
     process.exit(0)
   }
 }
