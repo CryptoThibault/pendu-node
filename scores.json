@@ -2,15 +2,13 @@
   "scores": [
     {
       "name": "tibo",
-      "score": 1
+      "score": 6,
+      "word": "arbre"
     },
     {
-      "name": "manu",
-      "score": 1
-    },
-    {
-      "name": "raph",
-      "score": 2
+      "name": "Thibault",
+      "score": 6,
+      "word": "chercher"
     }
   ]
 }
