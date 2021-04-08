@@ -1,14 +1,3 @@
 {
-  "scores": [
-    {
-      "name": "tibo",
-      "score": 6,
-      "word": "arbre"
-    },
-    {
-      "name": "Thibault",
-      "score": 6,
-      "word": "chercher"
-    }
-  ]
+  "scores": []
 }

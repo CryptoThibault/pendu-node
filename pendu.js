@@ -4,15 +4,16 @@ const { randomInt } = require('crypto')
 const { readFileSync, writeFileSync } = require('fs')
 
 let lignRender = 7
-let dictionary = readFileSync('dict.txt', 'utf-8').split('\n')
-let answer = dictionary[randomInt(0, dictionary.length)]
-let finded = Array(answer.length).fill('_')
-let history = []
-let nbtry = readFileSync('render.txt', 'utf-8').split('\n').length / lignRender
-let scorestab = JSON.parse(readFileSync('scores.json', 'utf-8')).scores
+
 
 // Début du jeu
 do {
+  let dictionary = readFileSync('dict.txt', 'utf-8').split('\n')
+  let answer = dictionary[randomInt(0, dictionary.length)]
+  let finded = Array(answer.length).fill('_')
+  let history = []
+  let nbtry = readFileSync('render.txt', 'utf-8').split('\n').length / lignRender
+  let scorestab = JSON.parse(readFileSync('scores.json', 'utf-8')).scores
   console.log('\nBienvenue dans le jeu du pendu !\n\n')
   let name = redlineSync.question('Entrer votre nom : ')
   // Début d'un essai
@@ -20,6 +21,7 @@ do {
     let visual = readFileSync('render.txt', 'utf-8').split('\n').slice(lignRender * nbtry - lignRender, lignRender * nbtry).join('\n')
     console.log(chalk.yellow(`Il vous reste ${nbtry} essaies\n`) + visual)
     let letter = redlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
+    console.clear()
     if (letter.length !== 1) { console.log('Choisi seulement une lettre !'); continue }
     if (history.includes(letter)) { console.log('Choisi une lettre pas encore demandé !'); continue }
     history.push(letter)
