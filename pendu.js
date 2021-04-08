@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const redlineSync = require('readline-sync')
+const readlineSync = require('readline-sync')
 const { randomInt } = require('crypto')
 const { readFileSync, writeFileSync } = require('fs')
 
@@ -15,12 +15,12 @@ do {
   let nbtry = readFileSync('render.txt', 'utf-8').split('\n').length / lignRender
   let scorestab = JSON.parse(readFileSync('scores.json', 'utf-8')).scores
   console.log('\nBienvenue dans le jeu du pendu !\n\n')
-  let name = redlineSync.question('Entrer votre nom : ')
+  let name = readlineSync.question('Entrer votre nom : ')
   // Début d'un essai
   while (true) {
     let visual = readFileSync('render.txt', 'utf-8').split('\n').slice(lignRender * nbtry - lignRender, lignRender * nbtry).join('\n')
     console.log(chalk.yellow(`Il vous reste ${nbtry} essaies\n`) + visual)
-    let letter = redlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
+    let letter = readlineSync.question('Trouver ce mot : ' + finded.join(' ') + ' > ').toLowerCase()
     console.clear()
     if (letter.length !== 1) { console.log('Choisi seulement une lettre !'); continue }
     if (history.includes(letter)) { console.log('Choisi une lettre pas encore demandé !'); continue }
@@ -46,7 +46,7 @@ do {
       for (let i = 0; i < scorestab.length; i++) {
         console.log(`name: ${scorestab[i].name}   score: ${scorestab[i].score}`)
       }
-      process.exit(0)
+      break
     }
     // Mot à trouvé ne continent plus d'underscore
     if (!finded.includes('_')) {
@@ -57,7 +57,7 @@ do {
       for (let i = 0; i < scorestab.length; i++) {
         console.log(`nom: ${scorestab[i].name}   score: ${scorestab[i].score}  mot: ${scorestab[i].word}`)
       }
-      process.exit(0)
+      break
     }
   }
-} while (redlineSync.keyInYN('Voulez vous rejouez ?'))
+} while (readlineSync.keyInYN('Voulez vous rejouez ?'))
